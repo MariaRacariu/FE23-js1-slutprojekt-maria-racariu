@@ -1,0 +1,38 @@
+--G--
+• A list with the top 10 highest rated movies right now
+    • Show Image, Title, Release Date
+• A list with the top 10 popular movies right now
+    • Show Image, Title, Release Date
+• The ability to search for movies
+    • The result of the search for movies should show
+    all movies in the search result with these variables:
+        • Image
+        • Title
+        • Release Date
+        • Description
+• The ability to search for actors
+    • The search result has to show everything with
+    these variables:
+        • Image
+        • Name
+        • Actors most know position (Acting/Directing)
+        • A list of TV Shows and Movies the actor is
+        known for with these variables
+            • Image
+            • Title
+• Show error messages where the user can make a mistake
+but also inform the user that something has gone wrong
+
+• Use at least one JavaScript library. (IDK yet)
+• Use forms and inputs correctly
+
+
+--VG--
+• Use the API to allow users to log in using TMDB account
+and let them create lists which will be shown on the website.
+Users will be able to sort thru them.
+
+• Organize your code so it's easy to read
+• Code does not repeat it's self
+• Build code with the idea of future development 
+• Write on classroom if I did enough work for VG
