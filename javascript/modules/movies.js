@@ -41,7 +41,10 @@ export async function fetchMovies() {
   }
   
   function showMovies(moviesList) {
-      for (const movie of moviesList) {
+    var counter = 0;
+    
+    for (const movie of moviesList) {
+      if(counter < 10){
         const heading = document.createElement('h1');
         document.body.append(heading);
         const movieTitle = movie.title;
@@ -51,11 +54,13 @@ export async function fetchMovies() {
         document.body.append(image);
         const movieImage = movie.poster_path;
         image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
-  
+
         const releaseDate = document.createElement('p');
         document.body.append(releaseDate);
         const movieReleaseDate = movie.release_date;
         releaseDate.innerText = movieReleaseDate;
-        
+
+        counter++;
       }
+    }  
   }
