@@ -1,3 +1,10 @@
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.movies_container {
+    background-color: lightcoral;
+    display: flex;
+}
+
+.single_movie {}
