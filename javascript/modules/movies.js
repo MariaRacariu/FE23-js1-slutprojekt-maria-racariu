@@ -1,4 +1,4 @@
-const moviesContainer = document.querySelector('.movies_container');
+
 
 export async function fetchMovies() {
   const options = {
@@ -18,14 +18,14 @@ export async function fetchMovies() {
 
     if (popularResponse.ok && topRatedResponse.ok) {
       const popularMoviesHeading = document.createElement('h2');
-      moviesContainer.append(popularMoviesHeading);
+      document.body.append(popularMoviesHeading);
       popularMoviesHeading.innerText = 'Popular Movies';
 
       const popularMoviesData = await popularResponse.json();
       showMovies(popularMoviesData.results);
 
       const topRatedMoviesHeading = document.createElement('h2');
-      moviesContainer.append(topRatedMoviesHeading);
+      document.body.append(topRatedMoviesHeading);
       topRatedMoviesHeading.innerText = 'Top Rated Movies';
 
       const topRatedMoviesData = await topRatedResponse.json();
@@ -45,6 +45,10 @@ export async function fetchMovies() {
 function showMovies(moviesList) {
   var counter = 0;
 
+  const moviesContainer = document.createElement('div');
+  document.body.append(moviesContainer);
+  moviesContainer.classList.add('movies_container');
+
   for (const movie of moviesList) {
     if (counter < 10) {
       const movieWrapper = document.createElement('div');
@@ -59,12 +63,12 @@ function showMovies(moviesList) {
       const image = document.createElement('img');
       movieWrapper.append(image);
       const movieImage = movie.poster_path;
-      image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
+      image.src = `https://image.tmdb.org/t/p/w300/${movieImage}`;
 
       const releaseDate = document.createElement('p');
       movieWrapper.append(releaseDate);
       const movieReleaseDate = movie.release_date;
-      releaseDate.innerText = movieReleaseDate;
+      releaseDate.innerText = `Release date: ${movieReleaseDate}`;
 
       counter++;
     }

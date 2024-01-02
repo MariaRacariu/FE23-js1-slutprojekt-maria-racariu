@@ -3,8 +3,17 @@
 }
 
 .movies_container {
-    background-color: lightcoral;
-    display: flex;
+    /* background-color: lightcoral; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-
-.single_movie {}
+.single_movie{
+    display: grid;
+    align-items: center;
+}
+.single_movie > h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    max-height: 25px;
+}
+single_movie_search_result
