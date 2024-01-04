@@ -9,16 +9,22 @@
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
-    <form>
-      <label for="searchInput">Search:</label>
-      <input type="search" name="searchInput" id="searchInput" />
-      <input
-        type="button"
-        name="searchButton"
-        id="searchButton"
-        value="search"
-      />
-    </form>
-    <div class="search_result" id="searchResult"></div>
+    <nav class="navigation_bar">
+      <h1>Not IMDB</h1>
+      <div>
+        <form>
+          <label for="searchInput">Search:</label>
+          <input type="search" name="searchInput" id="searchInput" />
+          <input
+            type="button"
+            name="searchButton"
+            id="searchButton"
+            value="search"
+          />
+        </form>
+      </div>
+    </nav>
+    <div id="searchErrorMessage"></div>
+    <div class="search_result_not_active" id="searchResult"></div>
   </body>
 </html>

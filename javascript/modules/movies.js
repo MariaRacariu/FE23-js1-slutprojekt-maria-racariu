@@ -20,14 +20,16 @@ export async function fetchMovies() {
       const popularMoviesHeading = document.createElement('h2');
       document.body.append(popularMoviesHeading);
       popularMoviesHeading.innerText = 'Popular Movies';
+      popularMoviesHeading.classList.add('movie_containers_headings');
 
       const popularMoviesData = await popularResponse.json();
       showMovies(popularMoviesData.results);
+      // console.log(popularMoviesData);
 
       const topRatedMoviesHeading = document.createElement('h2');
       document.body.append(topRatedMoviesHeading);
       topRatedMoviesHeading.innerText = 'Top Rated Movies';
-
+      topRatedMoviesHeading.classList.add('movie_containers_headings');
       const topRatedMoviesData = await topRatedResponse.json();
       showMovies(topRatedMoviesData.results);
 
@@ -38,7 +40,7 @@ export async function fetchMovies() {
     }
   }
   catch (error) {
-    console.log(error);
+    displayErrorMessage(error);
   }
 }
 
@@ -55,22 +57,45 @@ function showMovies(moviesList) {
       moviesContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
 
-      const heading = document.createElement('h3');
-      movieWrapper.append(heading);
-      const movieTitle = movie.title;
-      heading.innerText = movieTitle;
-
       const image = document.createElement('img');
       movieWrapper.append(image);
       const movieImage = movie.poster_path;
       image.src = `https://image.tmdb.org/t/p/w300/${movieImage}`;
 
+      const informationWrapper = document.createElement('div');
+      movieWrapper.append(informationWrapper);
+      informationWrapper.classList.add('movie_info');
+
+      const heading = document.createElement('h3');
+      informationWrapper.append(heading);
+      const movieTitle = movie.title;
+      heading.innerText = movieTitle;
+
       const releaseDate = document.createElement('p');
-      movieWrapper.append(releaseDate);
+      informationWrapper.append(releaseDate);
       const movieReleaseDate = movie.release_date;
       releaseDate.innerText = `Release date: ${movieReleaseDate}`;
+
+      const description = document.createElement('p');
+      informationWrapper.append(description);
+      const movieDescription = movie.overview;
+      description.innerText = movieDescription;
 
       counter++;
     }
   }
+}
+
+// Display Error Message for user
+function displayErrorMessage(error) {
+  console.log(error);
+
+  const errorMessage = document.createElement('h1');
+
+  if (error === 404) {
+      errorMessage.innerText = '404';
+  } else {
+      errorMessage.innerText = 'something went wrong';
+  }
+  document.body.append(errorMessage);
 }
