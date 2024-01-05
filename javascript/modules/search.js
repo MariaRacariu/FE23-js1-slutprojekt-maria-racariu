@@ -3,9 +3,9 @@ const searchResultError = document.querySelector('#searchErrorMessage');
 
 export async function search() {
   const searchInput = document.querySelector('#searchInput').value;
-  
+
   // console.log(searchInput);
-  
+
   const options = {
     method: 'GET',
     headers: {
@@ -17,34 +17,34 @@ export async function search() {
   const searchURL = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=en-US&page=1&query=${searchInput}`;
 
   try {
-      const searchResponse = await fetch(searchURL, options);
-      if (searchResponse.ok) {
-          const searchResult = await searchResponse.json();
-          console.log(searchResult.results);
-          if(searchResult.results.length == 0){
-            const errorMessage = document.createElement('h6');
-            errorMessage.innerText = 'There are no results with this name';
-            searchResultError.append(errorMessage);
-          }else{
-            searchResultError.remove();
-            showSearchResult(searchResult.results);
-          }
-      } else if (searchResponse.status === 404) {
-          throw 404;
+    const searchResponse = await fetch(searchURL, options);
+    if (searchResponse.ok) {
+      const searchResult = await searchResponse.json();
+      console.log(searchResult.results);
+      if (searchResult.results.length == 0) {
+        const errorMessage = document.createElement('h6');
+        errorMessage.innerText = 'There are no results with this name';
+        searchResultError.append(errorMessage);
       } else {
-          throw 'error';
+        searchResultError.remove();
+        showSearchResult(searchResult.results);
       }
+    } else if (searchResponse.status === 404) {
+      throw 404;
+    } else {
+      throw 'error';
+    }
   }
   catch (error) {
     displayErrorMessage(error);
   }
 }
 
-function showSearchResult(searchResult){
+function showSearchResult(searchResult) {
   searchResultContainer.classList.remove('search_result_not_active');
   searchResultContainer.classList.add('search_result_active');
-  for(const item of searchResult){
-    if(item.media_type == 'movie'){
+  for (const item of searchResult) {
+    if (item.media_type == 'movie') {
       const movieWrapper = document.createElement('div');
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
@@ -73,7 +73,7 @@ function showSearchResult(searchResult){
       const movieDescription = item.overview;
       description.innerText = movieDescription;
 
-    }else if(item.media_type == 'person'){
+    } else if (item.media_type == 'person') {
       const movieWrapper = document.createElement('div');
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
@@ -81,8 +81,8 @@ function showSearchResult(searchResult){
       const profile = document.createElement('img');
       movieWrapper.append(profile);
       const actorProfileImage = item.profile_path;
-      profile.src =`https://image.tmdb.org/t/p/w200/${actorProfileImage}`;
-      
+      profile.src = `https://image.tmdb.org/t/p/w200/${actorProfileImage}`;
+
       const informationWrapper = document.createElement('div');
       movieWrapper.append(informationWrapper);
       informationWrapper.classList.add('movie_info');
@@ -101,7 +101,7 @@ function showSearchResult(searchResult){
       informationWrapper.append(knownForInfo);
       knownForInfo.classList.add('known_for_movies');
 
-      for(const movie of item.known_for){
+      for (const movie of item.known_for) {
         const knownForInfoMovies = document.createElement('div');
         knownForInfo.append(knownForInfoMovies);
 
@@ -122,15 +122,15 @@ function showSearchResult(searchResult){
   closeIcon.classList.add('close');
   closeIcon.addEventListener('click', clearSearch);
 
-  function clearSearch(){
-    while(searchResultContainer.firstChild){
+  function clearSearch() {
+    while (searchResultContainer.firstChild) {
       searchResultContainer.removeChild(searchResultContainer.firstChild);
     }
     searchResultContainer.classList.remove('search_result_active');
     searchResultContainer.classList.add('search_result_not_active');
     searchInput.value = '';
 
-    searchResult.splice(0,searchResult.length);
+    searchResult.splice(0, searchResult.length);
     return searchResult;
   }
 }
@@ -142,9 +142,9 @@ function displayErrorMessage(error) {
   const errorMessage = document.createElement('h1');
 
   if (error === 404) {
-      errorMessage.innerText = '404';
+    errorMessage.innerText = '404';
   } else {
-      errorMessage.innerText = 'something went wrong';
+    errorMessage.innerText = 'something went wrong';
   }
   document.body.append(errorMessage);
 }

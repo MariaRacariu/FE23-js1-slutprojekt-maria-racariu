@@ -10,87 +10,118 @@ d90429 highlight color
     background-color: #edf2f4;
     color: #13141d;
 }
-.movie_containers_headings{
+
+p,
+h3 {
+    margin-bottom: 10px;
+}
+
+.movie_containers_headings {
     padding: 0px 0px 20px 50px;
 }
+
 .movies_container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 50px;
     padding: 0px 0px 50px 50px;
 }
-.single_movie{
-   display: flex;
-   flex-direction: row;
+
+.single_movie {
+    display: flex;
+    flex-direction: row;
 }
-.single_movie > h3 {
+
+.single_movie>h3 {
     margin-top: 0px;
     margin-bottom: 20px;
     max-height: 25px;
 }
-.single_movie > img{
+
+.single_movie>img {
     padding: 0px 20px 0px 0px;
 }
-.single_movie > div > p{
+
+.single_movie>div>p {
     max-width: 500px;
 }
-/* single_movie_search_result */
 
 .navigation_bar {
     display: flex;
     flex-direction: row;
     padding: 10px 0px 30px 0px;
 }
-.navigation_bar > h1 {
+
+.navigation_bar>h1 {
     width: 200px;
     padding: 0px 0px 0px 50px;
 }
-.navigation_bar > div {
+
+.navigation_bar>div {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 100%;
 }
-.navigation_bar > div > form{
+
+.navigation_bar>div>form {
     padding: 0px 50px 0px 0px;
 }
-.search_result_not_active{
+
+.search_result_not_active {
     display: none;
 }
-.search_result_active{
+
+.search_result_active {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 50px;
     padding: 0px 0px 50px 50px;
 }
-.known_for_movies{
+
+.known_for_movies {
     display: flex;
     flex-direction: row;
+    column-gap: 10px;
+}
+
+.known_for_movies>div>img {
+    width: 100px;
+}
+
+.search_error_message {
+    padding: 0px 0px 20px 50px;
+    color: red;
 }
 
 /* X icon */
 .close {
     position: absolute;
     right: 32px;
-    top: 32px;
+    top: 45px;
     width: 32px;
     height: 32px;
     opacity: 0.3;
-  }
-  .close:hover {
+}
+
+.close:hover {
     opacity: 1;
-  }
-  .close:before, .close:after {
+}
+
+.close:before,
+.close:after {
     position: absolute;
     left: 15px;
     content: ' ';
     height: 33px;
     width: 2px;
     background-color: #333;
-  }
-  .close:before {
+}
+
+.close:before {
     transform: rotate(45deg);
-  }
-  .close:after {
+}
+
+.close:after {
     transform: rotate(-45deg);
-  }
+}
