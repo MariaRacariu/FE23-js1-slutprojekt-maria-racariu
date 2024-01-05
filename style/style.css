@@ -57,6 +57,13 @@ h3 {
     padding: 0px 0px 0px 50px;
 }
 
+.navigation_bar > p{
+    width: 200px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+}
+
 .navigation_bar>div {
     display: flex;
     justify-content: flex-end;
@@ -77,6 +84,7 @@ h3 {
     grid-template-columns: 1fr 1fr;
     row-gap: 50px;
     padding: 0px 0px 50px 50px;
+    border-bottom: 1px solid #000;
 }
 
 .known_for_movies {
@@ -89,7 +97,7 @@ h3 {
     width: 100px;
 }
 
-.search_error_message {
+.search_error_message > h5 {
     padding: 0px 0px 20px 50px;
     color: red;
 }

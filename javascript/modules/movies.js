@@ -21,6 +21,7 @@ export async function fetchMovies() {
       document.body.append(popularMoviesHeading);
       popularMoviesHeading.innerText = 'Popular Movies';
       popularMoviesHeading.classList.add('movie_containers_headings');
+      popularMoviesHeading.setAttribute('id', 'popularMovies');
 
       const popularMoviesData = await popularResponse.json();
       showMovies(popularMoviesData.results);
@@ -30,6 +31,8 @@ export async function fetchMovies() {
       document.body.append(topRatedMoviesHeading);
       topRatedMoviesHeading.innerText = 'Top Rated Movies';
       topRatedMoviesHeading.classList.add('movie_containers_headings');
+      topRatedMoviesHeading.setAttribute('id', 'topRatedMovies');
+
       const topRatedMoviesData = await topRatedResponse.json();
       showMovies(topRatedMoviesData.results);
 

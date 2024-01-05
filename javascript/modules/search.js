@@ -22,9 +22,9 @@ export async function search() {
       const searchResult = await searchResponse.json();
       console.log(searchResult.results);
       if (searchResult.results.length == 0) {
-        const errorMessage = document.createElement('h6');
-        errorMessage.innerText = 'There are no results with this name';
+        const errorMessage = document.createElement('h5');
         searchResultError.append(errorMessage);
+        errorMessage.innerText = 'There are no results with this name';
       } else {
         searchResultError.remove();
         showSearchResult(searchResult.results);
@@ -49,10 +49,16 @@ function showSearchResult(searchResult) {
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
 
-      const image = document.createElement('img');
-      movieWrapper.append(image);
-      const movieImage = item.poster_path;
-      image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
+      if(!item.poster_path || item.poster_path == null){
+        const image = document.createElement('img');
+        movieWrapper.append(image);
+        image.src = '/images/placeholder.png';
+      }else{
+        const image = document.createElement('img');
+        movieWrapper.append(image);
+        const movieImage = item.poster_path;
+        image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
+      }
 
       const informationWrapper = document.createElement('div');
       movieWrapper.append(informationWrapper);
@@ -62,6 +68,11 @@ function showSearchResult(searchResult) {
       informationWrapper.append(heading);
       const movieTitle = item.title;
       heading.innerText = movieTitle;
+
+      const mediaType = document.createElement('p');
+      informationWrapper.append(mediaType);
+      const typeInfo = item.media_type;
+      mediaType.innerText = `Type: ${typeInfo}`;
 
       const releaseDate = document.createElement('p');
       informationWrapper.append(releaseDate);
@@ -78,11 +89,17 @@ function showSearchResult(searchResult) {
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
 
-      const profile = document.createElement('img');
-      movieWrapper.append(profile);
-      const actorProfileImage = item.profile_path;
-      profile.src = `https://image.tmdb.org/t/p/w200/${actorProfileImage}`;
-
+      if(!item.profile_path || item.profile_path == null){
+        const profile = document.createElement('img');
+        movieWrapper.append(profile);
+        profile.src = '/images/placeholder.png';
+      }else{
+        const profile = document.createElement('img');
+        movieWrapper.append(profile);
+        const actorProfileImage = item.profile_path;
+        profile.src = `https://image.tmdb.org/t/p/w200/${actorProfileImage}`;
+      }
+      
       const informationWrapper = document.createElement('div');
       movieWrapper.append(informationWrapper);
       informationWrapper.classList.add('movie_info');
@@ -91,6 +108,11 @@ function showSearchResult(searchResult) {
       informationWrapper.append(name);
       const actorName = item.name;
       name.innerText = actorName;
+
+      const mediaType = document.createElement('p');
+      informationWrapper.append(mediaType);
+      const typeInfo = item.media_type;
+      mediaType.innerText = `Type: ${typeInfo}`;
 
       const knownFor = document.createElement('p');
       informationWrapper.append(knownFor);
@@ -105,15 +127,33 @@ function showSearchResult(searchResult) {
         const knownForInfoMovies = document.createElement('div');
         knownForInfo.append(knownForInfoMovies);
 
-        const heading = document.createElement('h3');
-        knownForInfoMovies.append(heading);
-        const movieTitle = movie.title;
-        heading.innerText = movieTitle;
+        if(!movie.title){
+          const heading = document.createElement('h3');
+          knownForInfoMovies.append(heading);
+          const movieTitle = movie.name;
+          heading.innerText = movieTitle;
+        }else{
+          const heading = document.createElement('h3');
+          knownForInfoMovies.append(heading);
+          const movieTitle = movie.title;
+          heading.innerText = movieTitle;
+        }
 
-        const image = document.createElement('img');
-        knownForInfoMovies.append(image);
-        const movieImage = movie.poster_path;
-        image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
+        const mediaType = document.createElement('p');
+        knownForInfoMovies.append(mediaType);
+        const typeInfo = movie.media_type;
+        mediaType.innerText = typeInfo;
+
+        if(!movie.poster_path || movie.poster_path == null){
+          const image = document.createElement('img');
+          knownForInfoMovies.append(image);
+          image.src = '/images/placeholder.png';
+        }else{
+          const image = document.createElement('img');
+          knownForInfoMovies.append(image);
+          const movieImage = movie.poster_path;
+          image.src = `https://image.tmdb.org/t/p/w200/${movieImage}`;
+        }
       }
     }
   }
