@@ -1,10 +1,10 @@
+// Does a search request to the api and displays the result
+// Also checks if certain data exists depending on the type of search result
 const searchResultContainer = document.querySelector('#searchResult');
 const searchResultError = document.querySelector('#searchErrorMessage');
 
 export async function search() {
   const searchInput = document.querySelector('#searchInput').value;
-
-  // console.log(searchInput);
 
   const options = {
     method: 'GET',
@@ -20,7 +20,6 @@ export async function search() {
     const searchResponse = await fetch(searchURL, options);
     if (searchResponse.ok) {
       const searchResult = await searchResponse.json();
-      console.log(searchResult.results);
       if (searchResult.results.length == 0) {
         const errorMessage = document.createElement('h5');
         searchResultError.append(errorMessage);
@@ -45,6 +44,7 @@ function showSearchResult(searchResult) {
   searchResultContainer.classList.add('search_result_active');
   for (const item of searchResult) {
     if (item.media_type == 'movie') {
+      // Display Movies
       const movieWrapper = document.createElement('div');
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
@@ -85,6 +85,7 @@ function showSearchResult(searchResult) {
       description.innerText = movieDescription;
 
     } else if (item.media_type == 'person') {
+      // Display People
       const movieWrapper = document.createElement('div');
       searchResultContainer.append(movieWrapper);
       movieWrapper.classList.add('single_movie');
@@ -124,6 +125,7 @@ function showSearchResult(searchResult) {
       knownForInfo.classList.add('known_for_movies');
 
       for (const movie of item.known_for) {
+        // Displays the movies actors are known for
         const knownForInfoMovies = document.createElement('div');
         knownForInfo.append(knownForInfoMovies);
 
@@ -157,6 +159,7 @@ function showSearchResult(searchResult) {
       }
     }
   }
+  // Close button for the search pop up
   const closeIcon = document.createElement('a');
   searchResultContainer.append(closeIcon);
   closeIcon.classList.add('close');

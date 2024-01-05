@@ -1,4 +1,5 @@
-
+// This page creates the containers for the popular and top rated movies
+// Also displayes the movies
 
 export async function fetchMovies() {
   const options = {
@@ -25,7 +26,6 @@ export async function fetchMovies() {
 
       const popularMoviesData = await popularResponse.json();
       showMovies(popularMoviesData.results);
-      // console.log(popularMoviesData);
 
       const topRatedMoviesHeading = document.createElement('h2');
       document.body.append(topRatedMoviesHeading);

@@ -6,6 +6,7 @@ fetchMovies();
 
 const searchButton = document.querySelector('#searchButton').addEventListener('click', search);
 
+// A small animation using the anime.js to animate the name of the page
 anime({
     targets: '.title',
     keyframes: [
