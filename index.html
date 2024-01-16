@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <script src="anime.js/anime.min.js"></script>
     <script src="javascript/main.js" type="module"></script>
+  
+
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
@@ -16,15 +18,10 @@
       <p><a href="index.html#popularMovies">Popular Movies</a></p>
       <p><a href="index.html#topRatedMovies">Top Rated Movies</a></p>
       <div>
-        <form>
+        <form id="searchForm">
           <label for="searchInput">Search:</label>
-          <input type="search" name="searchInput" id="searchInput" />
-          <input
-            type="button"
-            name="searchButton"
-            id="searchButton"
-            value="search"
-          />
+          <input type="text" name="searchInput" id="searchInput" autocomplete="off"/>
+          <button type="button" name="searchButton" id="searchButton">Search</button>
         </form>
       </div>
     </nav>
